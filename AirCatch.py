@@ -12,6 +12,7 @@ import csv
 import os
 # We want to use time.sleep()
 import time
+import glob
 # Create a timestamp for .csv filename
 from datetime import datetime
 
@@ -58,7 +59,7 @@ if not 'SUDO_UID' in os.environ.keys():
 os.system ('screen -d -m rm *.csv')
 
 # Regex to find wireless interfaces, we're making the assumption they will all be wlan0 or higher.
-wlan_pattern = re.compile("^wlan[0-9]+")
+wlan_pattern = re.compile("wlan[0-9]")
 
 check_wifi_result = wlan_pattern.findall(subprocess.run(["iwconfig"], capture_output=True).stdout.decode())
 
@@ -93,10 +94,13 @@ kill_confilict_processes =  subprocess.run(["sudo", "airmon-ng", "check", "kill"
 # Put wireless interface in Monitored mode
 print("Putting Wifi adapter into monitored mode:")
 put_in_monitored_mode = subprocess.run(["sudo", "airmon-ng", "start", iface])
-os.system('screen -d -m ifconfig ' + iface + ' down')
-os.system('screen -d -m iwconfig ' + iface + ' mode monitor')
-os.system('screen -d -m ifconfig ' + iface + ' up')
 
+# Check if the selected interface name changed to wlan*mon after enabling monitor mode
+check_iface = glob.glob('/sys/class/net/wlan*mon')
+
+if check_iface:
+    # Get the first matching interface
+    iface = os.path.basename(check_iface[0])
 
 # Discover access points
 discover_access_points = os.system("screen -d -m sudo airodump-ng -w file --write-interval 1 --output-format csv" + ' ' + iface)
