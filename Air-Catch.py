@@ -12,9 +12,10 @@ import csv
 import os
 # We want to use time.sleep()
 import time
+# We want to check that after enabling monitor mode our interface name is changed or not
 import glob
-# Create a timestamp for .csv filename
-from datetime import datetime
+# To Change Title Color
+from termcolor import colored
 
 # We declare an empty list where all active wireless networks will be saved to.
 active_wireless_networks = []
@@ -39,7 +40,7 @@ def check_for_essid(essid, lst):
     return check_status
 
 # Basic user interface header
-print(r"""
+title = (r"""
   /$$$$$$  /$$                  /$$$$$$              /$$               /$$      
  /$$__  $$|__/                 /$$__  $$            | $$              | $$      
 | $$  \ $$ /$$  /$$$$$$       | $$  \__/  /$$$$$$  /$$$$$$    /$$$$$$$| $$$$$$$ 
@@ -47,7 +48,14 @@ print(r"""
 | $$__  $$| $$| $$  \__/      | $$        /$$$$$$$  | $$    | $$      | $$  \ $$
 | $$  | $$| $$| $$            | $$    $$ /$$__  $$  | $$ /$$| $$      | $$  | $$
 | $$  | $$| $$| $$            |  $$$$$$/|  $$$$$$$  |  $$$$/|  $$$$$$$| $$  | $$
-|__/  |__/|__/|__/             \______/  \_______/   \___/   \_______/|__/  |__/""")
+|__/  |__/|__/|__/             \______/  \_______/   \___/   \_______/|__/  |__/
+
+                by XBEAST ~ Embrace the power, command the networks!
+                                    v1.3
+                    Github Link: https://github.com/XBEAST1""")
+
+colored_text = colored(title, 'magenta')
+print(colored_text)
 
 # If the user doesn't run the program with super user privileges, don't allow them to continue.
 print ()
