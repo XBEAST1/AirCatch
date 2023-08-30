@@ -1,6 +1,6 @@
 Requirments:
 
-```apt install python3 && apt install aircrack-ng```
+```apt install python3 && apt install aircrack-ng && apt install xterm```
 <br>
 
 Usage:
