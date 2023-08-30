@@ -5,7 +5,6 @@ Requirments:
 
 Usage:
 
-CLI:
 ```python3 Air-Catch.py```
 
 ![aircatch](https://github.com/XBEAST1/Air-Catch/assets/81472131/87d53363-ee27-4a94-bc85-6de85528ad41)
