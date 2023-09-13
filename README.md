@@ -1,7 +1,7 @@
 Requirments:
 
 ```
-sudo apt install python3 && sudo apt install aircrack-ng && sudo apt install xterm
+sudo apt install python3 && sudo apt install aircrack-ng && sudo apt install xterm -y
 ```
 <br>
 
